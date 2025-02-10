@@ -27,7 +27,7 @@ const Work = () => {
         <p className="primary-subheading" style={{color:"navy",fontSize:"50px"}}>Work</p>
         <h1 className="primary-heading"style={{fontSize:"40px"}}>How It Works</h1>
         <p className="primary-text">
-        Our Placex streamlines the job search process by matching students with relevant job opportunities.
+        Our JobVault streamlines the job search process by matching students with relevant job opportunities.
         we ensure seamless navigation and effective communication between students and recruiters.
         </p>
       </div>

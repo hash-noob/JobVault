@@ -14,7 +14,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json());
 app.use("/auth", UserRouter);
-mongoose.connect("mongodb://127.0.0.1:27017/PlaceX");
+mongoose.connect("mongodb+srv://manupalash4:1234@users.etlts.mongodb.net/?retryWrites=true&w=majority&appName=users");
 app.listen(process.env.PORT, () => {
   console.log(`Server is running`);
 });

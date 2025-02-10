@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer-container">
       <div className="footer-wrapper">
         <div className="footer-section-one">
-            <h1 style={{textAlign:"center",marginLeft:"80px",fontSize:"3em"}}>PlaceX</h1>
+            <h1 style={{textAlign:"center",marginLeft:"80px",fontSize:"3em"}}>JobVault</h1>
           </div>
           
 

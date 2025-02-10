@@ -1,20 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Admin/Admin-CSS/AdminNav.css';
 
 function AdminHome() {
-  function handleLogout() {
+  const navigate = useNavigate();
 
+  function handleLogout() {
+    // Clear user session (e.g., remove token)
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login"); // Redirect to login page
   }
+
   return (
     <body>
       <nav className="navbar navbar-expand-lg fixed-top">
         <div className="container-fluid">
-          <a className="navbar-brand me-auto" to="/">PlaceX</a>
+          <a className="navbar-brand me-auto" to="/">JobVault</a>
           <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div className="offcanvas-header">
-              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">PlaceX</h5>
+              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">JobVault</h5>
               <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
@@ -43,7 +48,6 @@ function AdminHome() {
           </button>
       </nav>
 
-
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
         crossOrigin="anonymous">
@@ -51,7 +55,5 @@ function AdminHome() {
     </body>
   );
 }
-
-
 
 export default AdminHome;

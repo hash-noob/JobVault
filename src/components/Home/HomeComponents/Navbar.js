@@ -12,10 +12,10 @@ const Navbar = () => {
     <body>
     <nav className="navbar navbar-expand-lg fixed-top">
     <div className="container-fluid">
-          <Link to="/home" className="navbar-brand me-auto" >PlaceX</Link>
+          <Link to="/home" className="navbar-brand me-auto" >JobVault</Link>
           <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div className="offcanvas-header">
-              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">PlaceX</h5>
+              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">JobVault</h5>
               <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">

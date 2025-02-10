@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer-container">
       <div className="footer-wrapper">
         <div className="footer-section-one">
-            <h1 style={{textAlign:"center",marginLeft:"80px",fontSize:"3em"}}>PlaceX</h1>
+            <h1 style={{textAlign:"center",marginLeft:"80px",fontSize:"3em"}}>JobVault</h1>
           </div>
           
 
@@ -15,9 +15,9 @@ const Footer = () => {
     <div class="founders-section">
       <h3>Founders</h3>
       <ul>
-        <li>Jash Mehta</li>
-        <li>Priyanshi Mehta</li>
-        <li>Masrita Mangalarapu</li>
+        <li>Sreeja Sadhu</li>
+        <li>Y Manu Palash Reddy</li>
+        <li>K Ruthwik</li>
       </ul>
     </div>
   </div>
@@ -25,9 +25,9 @@ const Footer = () => {
   <div class="founders-section-2">
           <h3>Contact Us</h3>
           <ul>
-        <li>yash23@nmims.in</li>
-        <li>ashley12@nmims.in</li>
-        <li>lina56@nmims.in</li>
+        <li>sreejasadhu2006@gmail.com</li>
+        <li>manupalash4@gmail.com</li>
+        <li>ruthwikkanuganti@gmail.com</li>
       </ul>
       </div>
         </div>

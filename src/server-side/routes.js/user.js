@@ -31,6 +31,9 @@ router.post("/register", async (req, res) => {
     isAdmin,
   } = req.body;
   const user = await User.findOne({ email });
+  if (!user) {
+    return res.json("Invalid User");
+  }
   if (user) {
     return res.json({ message: "User already existed" });
   }
@@ -78,6 +81,7 @@ router.post("/", async (req, res) => {
 
   if (user.isAdmin === "1") {
     console.log("User is admin");
+    return res.json("Admin");
   }
 
   const token = jwt.sign(
