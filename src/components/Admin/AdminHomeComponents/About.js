@@ -21,19 +21,19 @@ const About = () => {
           <div className="card" style={{height:"400px",width:"250px"}}>
             <img src={Image1PD} className="card-img-top" alt="..." />
             <div className="card-body">
-              <p className="card-text" style={{fontSize:"1.2rem"}}><b>Shailendra Vidhate</b><br></br>Placement Director</p>
+              <p className="card-text" style={{fontSize:"1.2rem"}}><b>...</b><br></br>Placement Director</p>
             </div>
           </div>
           <div className="card" style={{height:"400px",width:"250px"}}>
             <img src={Image2AC1} className="card-img-top" alt="..." />
             <div className="card-body">
-            <p className="card-text" style={{fontSize:"1.2rem"}}><b>Yash Davda</b><br></br>Assistant Placement Co-ordinator</p>
+            <p className="card-text" style={{fontSize:"1.2rem"}}><b>...</b><br></br>Assistant Placement Co-ordinator</p>
             </div>
           </div>
           <div className="card" style={{height:"400px",width:"250px"}}>
             <img src={Image3AC2} className="card-img-top" alt="..." />
             <div className="card-body">
-            <p className="card-text" style={{fontSize:"1.2rem"}}><b>Ashley Khuranna</b><br></br>Assistant Placement Co-ordinator</p>
+            <p className="card-text" style={{fontSize:"1.2rem"}}><b>...</b><br></br>Assistant Placement Co-ordinator</p>
             </div>
           </div>
         </div>

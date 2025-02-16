@@ -15,19 +15,19 @@ const Footer = () => {
     <div class="founders-section">
       <h3>Founders</h3>
       <ul>
-        <li>Jash Mehta</li>
-        <li>Priyanshi Mehta</li>
-        <li>Masrita Mangalarapu</li>
+        <li>Sadhu Sreeja</li>
+        <li>Y Manu Palash Reddy</li>
+        <li>K Ruthwik</li>
       </ul>
     </div>
   </div>
   <div className="footer-section-columns">
   <div class="founders-section-2">
           <h3>Contact Us</h3>
-          <ul>
-        <li>yash23@nmims.in</li>
-        <li>ashley12@nmims.in</li>
-        <li>lina56@nmims.in</li>
+      <ul>
+          <li>sreejasadhu2006@gmail.com</li>
+          <li>manupalash4@gmail.com</li>
+          <li>ruthwikkanuganti@gmail.com</li>
       </ul>
       </div>
         </div>
