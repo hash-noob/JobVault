@@ -11,7 +11,7 @@ function ForgetPassword() {
     e.preventDefault();
     const userData = { email };
     axios
-      .post("http://localhost:3001/auth/forgotpassword", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/forgotpassword`, {
         email,
       })
       .then((response) => {

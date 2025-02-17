@@ -16,14 +16,14 @@ const HomePage = () => {
   const [placementStatus, setPlacementStatus] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/verify").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`).then((res) => {
       if (!res.data.status) {
         navigate("/");
       }
     });
 
     axios
-      .get("http://localhost:3001/auth/currentUser")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/currentUser`)
       .then((res) => {
         setCurrentUser(res.data.user);
         fetchPlacementStatus(res.data.user._id);
@@ -35,7 +35,7 @@ const HomePage = () => {
 
   const fetchPlacementStatus = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3001/auth/placementStatus/${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/placementStatus/${userId}`);
       setPlacementStatus(response.data);
     } catch (error) {
       console.error("Error fetching placement status:", error);
@@ -46,7 +46,7 @@ const HomePage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/auth/getCompanies"
+          `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies`
         );
         dispatch(getCompanies(response.data));
       } catch (err) {

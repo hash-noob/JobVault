@@ -19,7 +19,7 @@ function Login() {
 
     const userData = { email, password };
     axios
-      .post("http://localhost:3001/auth", userData)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth`, userData)
       .then((result) => {        
         if (result.data === "Success") {
           navigate("/home");
