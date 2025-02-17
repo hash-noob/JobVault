@@ -26,21 +26,33 @@ function AdminRegister() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/admin/register", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/register`, {
         name,
         email,
         password,
-        isAdmin: "1"
+        adminCode
       });
 
       if (response.status === 200) {
         navigate("/admin");
       }
     } catch (error) {
-      if (error.response && error.response.data === "User already exists") {
-        setErrorMessage("Email already registered");
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        if (error.response.status === 400 && error.response.data.message === "User already exists") {
+          setErrorMessage("Email already registered");
+        } else {
+          setErrorMessage(error.response.data.message || "Registration failed. Please try again.");
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("Error request:", error.request);
+        setErrorMessage("No response from server. Please try again later.");
       } else {
-        setErrorMessage("Registration failed. Please try again.");
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error message:", error.message);
+        setErrorMessage("An error occurred. Please try again.");
       }
     }
   };

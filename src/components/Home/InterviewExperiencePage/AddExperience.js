@@ -20,7 +20,7 @@ function AddExperience() {
   const [alertColor, setAlertColor] = useState('');
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/verify").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`).then((res) => {
       if (res.data.status) {
       } else {
         navigate("/interviewexperience");
@@ -42,7 +42,7 @@ function AddExperience() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/auth/add-interview', formData);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/add-interview`, formData);
       console.log(response.data);
       
       setFormData({

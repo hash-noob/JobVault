@@ -11,7 +11,7 @@ import AdminHome from "../AdminHome.js";
 function AdminDashboard() {
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/verify").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`).then((res) => {
       if (res.data.status) {
       } else {
         navigate("/");
@@ -30,7 +30,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/getUsers")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/getUsers`)
       .then((response) => {
         setUsers(response.data.data);
         setOriginalUsers(response.data.data);

@@ -1,20 +1,32 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import cors from 'cors'
+import cors from "cors";
 import cookieParser from "cookie-parser";
-import { UserRouter } from "./routes.js/user.js";
-const app = express();
+import { UserRouter } from "./routes/user.js";
+import { adminRouter } from "./routes/admin.js";
 dotenv.config();
-app.use(cors({
-  origin: ['http://localhost:3000'],
-  credentials: true
 
-}))
-app.use(cookieParser())
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Configure CORS to allow requests from your frontend
+const corsOptions = {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true, // Allow cookies to be sent with requests
+};
+
+app.use(cors(corsOptions));
+
+app.use(cookieParser());
 app.use(express.json());
 app.use("/auth", UserRouter);
-mongoose.connect("mongodb+srv://manupalash4:1234@users.etlts.mongodb.net/?retryWrites=true&w=majority&appName=users");
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running`);
+app.use("/admin", adminRouter);
+
+// Use env variable, since mongo uri is sensitive
+mongoose.connect(process.env.MONGO_URI);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

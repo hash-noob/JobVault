@@ -12,7 +12,7 @@ function Companycrud() {
 
   const navigate=useNavigate()
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/verify").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`).then((res) => {
       if (res.data.status) {
       } else {
         navigate("/");
@@ -23,7 +23,7 @@ function Companycrud() {
   const companies = useSelector((state) => state.companies.companies);
   const handleDelete = (id) => {
     axios
-      .delete("http://localhost:3001/auth/deletecompany/" + id)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/auth/deletecompany/` + id)
       .then((res) => {
         dispatch(deleteCompany({ id }));
       })
@@ -34,7 +34,7 @@ function Companycrud() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/auth/getCompanies"
+          `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies`
         );
         dispatch(getCompanies(response.data));
         console.log(response);

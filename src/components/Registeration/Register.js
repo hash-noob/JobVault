@@ -86,7 +86,7 @@ function Registration() {
       isAdmin: null,
     };
     axios
-      .post("http://localhost:3001/auth/register", userData)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, userData)
       .then((result) => {
         console.log(result);
         navigate("/");

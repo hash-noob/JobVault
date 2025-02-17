@@ -45,7 +45,8 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:server": "npx nodemon src/server-side/index.js",
+    "start:client": "react-scripts start",
     "build": "webpack --resolve.alias zlib=browserify-zlib querystring=querystring-es3 path=path-browserify crypto=crypto-browserify stream=stream-browserify stream-http=stream-http url=url buffer=buffer/ util=util/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

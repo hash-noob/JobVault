@@ -10,7 +10,7 @@ function ScheduledInterviewData() {
   useEffect(() => {
     const fetchCompanyData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/auth/companyApplicants');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/companyApplicants`);
         setCompanyData(response.data);
       } catch (error) {
         console.error('Error fetching company data:', error);
@@ -23,7 +23,7 @@ function ScheduledInterviewData() {
 
   const handleUpdatePlacementStatus = async (userId, companyId, status) => {
     try {
-      const response = await axios.post('http://localhost:3001/auth/updatePlacementStatus', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/updatePlacementStatus`, {
         userId,
         companyId,
         status

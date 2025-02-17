@@ -16,7 +16,7 @@ function CompanyPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/auth/getCompanies/${id}`
+          `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies/${id}`
         );
         dispatch(getCompanies(response.data));
       } catch (err) {
@@ -27,14 +27,14 @@ function CompanyPage() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/verify").then((res) => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`).then((res) => {
       if (!res.data.status) {
         navigate("/");
       }
     });
 
     axios
-      .get("http://localhost:3001/auth/currentUser")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/currentUser`)
       .then((res) => {
         setCurrentUser(res.data.user);
       })
@@ -46,12 +46,12 @@ function CompanyPage() {
   const handleApply = async (companyId, userId) => {
     try {
       const response = await axios.post(
-        `http://localhost:3001/auth/applyCompany/${userId}/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/auth/applyCompany/${userId}/${id}`
       );
       alert(response.data.message);
 
       const updatedResponse = await axios.get(
-        `http://localhost:3001/auth/getCompanies/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies/${id}`
       );
       dispatch(getCompanies(updatedResponse.data));
       navigate("/scheduledInterview");
