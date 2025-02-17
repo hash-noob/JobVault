@@ -9,7 +9,42 @@ import nodemailer from "nodemailer";
 
 //---------------------------------------------USER ENDPOINTS--------------------------------------------------//
 
-//User Registeration API
+// Admin Registration API
+router.post("/admin/register", async (req, res) => {
+  const { name, email, password, adminCode } = req.body;
+
+  if (!name || !email || !password || !adminCode) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  if (adminCode !== "ADMIN_SECRET") {
+    return res.status(400).json({ message: "Invalid admin code" });
+  }
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({ message: "User already exists" });
+  }
+
+  try {
+    const hashpassword = await bcryt.hash(password, 10);
+    const newAdmin = new User({
+      name,
+      email,
+      password: hashpassword,
+      isAdmin: "1"
+    });
+
+    await newAdmin.save();
+    return res.json({ message: "Admin registered successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// User Registration API
+
 router.post("/register", async (req, res) => {
   const {
     name,

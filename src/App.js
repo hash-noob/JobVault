@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./components/Registeration/Register.js";
+import AdminRegister from "./components/Registeration/AdminRegister.js";
+
 import Login from "./components/Login/Login.js";
 import Home from "./components/Home/Home.js";
 import ForgetPassword from "./components/ForgotPassword/ForgetPassword.js";
@@ -41,6 +43,8 @@ function App() {
         <Route path="/interviewexperience" element={<InterviewExperience />} />
         <Route path="/addexperience" element={<AddExperience />} />
         <Route path="/faq" element={<Faqspage />} />
+        <Route path="/admin/register" element={<AdminRegister />} />
+
       </Routes>
     </Router>
   );

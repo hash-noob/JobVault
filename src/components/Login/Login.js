@@ -70,7 +70,14 @@ function Login() {
       >
         Forgot Password
       </button>
+      <button
+        className="register-btn"
+        onClick={() => navigate("/admin/register")}
+      >
+        Admin Registration
+      </button>
     </div>
+
   );
 }
 
