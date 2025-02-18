@@ -1,6 +1,8 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import { Admin } from "../models/admin.js";
+import jwt from "jsonwebtoken";
+
 
 const adminRouter = express.Router();
 
@@ -38,7 +40,33 @@ adminRouter.post("/register", async (req, res) => {
   }
 });
 
-// Add other admin-specific routes here
+adminRouter.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await Admin.findOne({ email });
+
+  if (!user) {
+    console.log("Invalid User");
+    return res.json("Invalid User");
+  }
+
+  const validPassword = await bcrypt.compare(password, user.password);
+  if (!validPassword) {
+    console.log("Password Incorrect");
+    return res.json("Password Incorrect");
+  }
+  const token = jwt.sign(
+    { _id: user._id, username: user.username, isAdmin: true },
+    process.env.KEY,
+    { expiresIn: "1h" }
+  );
+
+  res.cookie("token", token, { httpOnly: true, maxAge: 300000 });
+
+  if (user.isAdmin === "1") {
+    console.log("User is admin");
+    return res.json("Admin");
+  }
+});
 
 export { adminRouter };
   

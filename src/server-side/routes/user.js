@@ -1,5 +1,5 @@
 import express from "express";
-import bcryt from "bcrypt";
+import bcrpyt from "bcrypt";
 const router = express.Router();
 import { User,  } from "../models/user.js";
 import { Company } from "../models/Company.js";
@@ -33,9 +33,6 @@ router.post("/register", async (req, res) => {
     isAdmin,
   } = req.body;
   const user = await User.findOne({ email });
-  if (!user) {
-    return res.json("Invalid User");
-  }
   if (user) {
     return res.json({ message: "User already existed" });
   }
@@ -66,7 +63,7 @@ router.post("/register", async (req, res) => {
 });
 
 //User and Admin Login API
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
@@ -75,16 +72,12 @@ router.post("/", async (req, res) => {
     return res.json("Invalid User");
   }
 
-  const validPassword = await bcryt.compare(password, user.password);
+  const validPassword = await bcrpyt.compare(password, user.password);
   if (!validPassword) {
     console.log("Password Incorrect");
     return res.json("Password Incorrect");
   }
 
-  if (user.isAdmin === "1") {
-    console.log("User is admin");
-    return res.json("Admin");
-  }
 
   const token = jwt.sign(
     { _id: user._id, username: user.username },
@@ -94,7 +87,7 @@ router.post("/", async (req, res) => {
 
   res.cookie("token", token, { httpOnly: true, maxAge: 300000 });
 
-  return res.json(user.isAdmin === "1" ? "Admin" : "Success");
+  return res.json(user);
 });
 
 // Middleware function to verify the authenticity of a user's token before granting access to protected routes.
