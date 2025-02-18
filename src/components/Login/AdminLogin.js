@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios, { Axios } from "axios";
 import "./Login-CSS/login.css";
 
-function Login() {
+function AdminLogin() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -19,11 +19,9 @@ function Login() {
 
     const userData = { email, password };
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, userData)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, userData)
       .then((result) => {        
-        if (result.data === "Success") {
-          navigate("/home");
-        } else if (result.data === "Password Incorrect") {
+        if (result.data === "Password Incorrect") {
           setErrorMessage("Incorrect Password");
         } else if (result.data === "Admin") {
           navigate("/admin");
@@ -61,9 +59,6 @@ function Login() {
         </div>
         <input type="submit" value="Login" className="btn btn-primary" />
       </form>
-      <button className="register-btn" onClick={() => navigate("/register")}>
-        Register
-      </button>
       <button
         className="register-btn"
         onClick={() => navigate("/forgotpassword")}
@@ -76,15 +71,9 @@ function Login() {
       >
         Admin Registration
       </button>
-      <button
-        className="register-btn"
-        onClick={() => navigate("/admin/login")}
-      >
-        Admin Login
-      </button>
     </div>
 
   );
 }
 
-export default Login;
+export default AdminLogin;

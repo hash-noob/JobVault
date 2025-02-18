@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./components/Registeration/Register.js";
 import AdminRegister from "./components/Registeration/AdminRegister.js";
+import AdminLogin from "./components/Login/AdminLogin.js";
 
 import Login from "./components/Login/Login.js";
 import Home from "./components/Home/Home.js";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/companylisting" element={<CompanyListing />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/add-companies" element={<AddCompanies />} />
         <Route path="/companies" element={<Companycrud />} />
