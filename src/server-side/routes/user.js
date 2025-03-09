@@ -1,5 +1,5 @@
 import express from "express";
-import bcrpyt from "bcrypt";
+import bcrypt from "bcrypt";
 const router = express.Router();
 import { User,  } from "../models/user.js";
 import { Company } from "../models/Company.js";
@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
     return res.json({ message: "User already existed" });
   }
 
-  const hashpassword = await bcryt.hash(password, 10);
+  const hashpassword = await bcrypt.hash(password, 10);
   const newUser = new User({
     name,
     email,
@@ -72,7 +72,7 @@ router.post("/login", async (req, res) => {
     return res.json("Invalid User");
   }
 
-  const validPassword = await bcrpyt.compare(password, user.password);
+  const validPassword = await bcrypt.compare(password, user.password);
   if (!validPassword) {
     console.log("Password Incorrect");
     return res.json("Password Incorrect");

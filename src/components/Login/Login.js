@@ -21,7 +21,7 @@ function Login() {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, userData)
       .then((result) => {        
-        if (result.data === "Success") {
+        if (result.status === 200) {
           navigate("/home");
         } else if (result.data === "Password Incorrect") {
           setErrorMessage("Incorrect Password");
