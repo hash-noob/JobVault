@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login-CSS/login.css";
 
-function AdminLogin() {
+function StudentLogin() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,25 +20,27 @@ function AdminLogin() {
 
     const userData = { email, password };
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, userData)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, userData)
       .then((result) => {        
-        if (result.data === "Password Incorrect") {
+        if (result.status === 200) {
+          navigate("/home");
+        } else if (result.data === "Password Incorrect") {
           setErrorMessage("Incorrect Password");
         } else if (result.data === "Admin") {
-          navigate("/admin");
+          setErrorMessage("Please use Admin login for administrator accounts");
         } else {
-          setErrorMessage("Invalid Admin User");
+          setErrorMessage("Invalid User");
         }
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className="modern-login-container admin-theme">
+    <div className="modern-login-container">
       <div className="login-form-container">
         <div className="login-header">
-          <h1>Admin Login</h1>
-          <p>Access the management dashboard</p>
+          <h1>Student Login</h1>
+          <p>Access your placement portal</p>
         </div>
         
         {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -75,8 +77,8 @@ function AdminLogin() {
           <button className="text-button" onClick={() => navigate("/forgotpassword")}>
             Forgot Password?
           </button>
-          <button className="text-button" onClick={() => navigate("/admin/register")}>
-            Register New Admin
+          <button className="text-button" onClick={() => navigate("/register")}>
+            New Student? Register
           </button>
           <button className="text-button" onClick={() => navigate("/")}>
             Back to Home
@@ -84,15 +86,15 @@ function AdminLogin() {
         </div>
       </div>
       
-      <div className="login-image admin-image">
+      <div className="login-image">
         <div className="overlay"></div>
         <div className="image-content">
-          <h2>Manage Placement Process</h2>
-          <p>Track statistics, manage companies, and help students succeed</p>
+          <h2>Find Your Dream Job</h2>
+          <p>Connect with top companies and kickstart your career</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default AdminLogin;
+export default StudentLogin;

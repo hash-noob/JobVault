@@ -66,7 +66,7 @@ const HomePage = () => {
         <div className="home-text-section">
           {currentUser && (
             <>
-              <h1 className="primary-heading" style={{ color: "navy", fontSize: "80px", fontWeight: "700px" }}>
+              <h1 className="primary-heading" style={{ color: "rgba(85,107,247,255)", fontSize: "80px", fontWeight: "700px" }}>
                 Welcome {currentUser.name}
               </h1>
               {placementStatus && placementStatus.status === "Placed" && (

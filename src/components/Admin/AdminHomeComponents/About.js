@@ -15,7 +15,7 @@ const About = () => {
       <div className="about-section-image-container">
         <img src={AboutBackgroundImage} alt="" />
       </div>
-      <p className="primary-subheading" style={{ color: "navy", fontSize: "50px",marginTop:"-450px",marginRight:"-450px"}}>About</p>
+      <p className="primary-subheading" style={{ color: "rgba(85,107,247,255)", fontSize: "50px",marginTop:"-450px",marginRight:"-450px"}}>About</p>
       <div className="about-section-text-container">
         <div className="card-container" style={{marginTop:"150px",marginRight:"60px"}}>
           <div className="card" style={{height:"400px",width:"250px"}}>

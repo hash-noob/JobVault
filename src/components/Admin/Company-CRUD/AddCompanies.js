@@ -85,7 +85,7 @@ function AddCompanies() {
   return (
     <>
   <AdminHome/>
-  <h1 style={{marginTop:'90px',color: 'navy'}}>Add Companies</h1>
+  <h1 style={{marginTop:'90px',color: 'rgba(85,107,247,255)'}}>Add Companies</h1>
   <div className="container-fluid h-100">
   <div className="row h-100 justify-content-center align-items-start"> {/* Adjust align-items to start */}
     {/* Image column */}

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Admin-CSS/AdminNav.css";
-
 function AdminNav() {
+  const navigate = useNavigate();
+
   function handleLogout() {
-    
+    // Clear user session (e.g., remove token)
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/login"); // Redirect to login page
   }
   return (
     <body>

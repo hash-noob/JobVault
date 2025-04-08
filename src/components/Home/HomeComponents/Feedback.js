@@ -6,7 +6,7 @@ const Feedback = () => {
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading" style={{color:"navy",fontSize:"50px"}}>Feedback</p>
+        <p className="primary-subheading" style={{color:"rgba(85,107,247,255)",fontSize:"50px"}}>Feedback</p>
         <h1 className="primary-heading" style={{fontSize:"40px"}}>What They Are Saying</h1>
        
       </div>

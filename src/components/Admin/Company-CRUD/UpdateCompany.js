@@ -82,7 +82,7 @@ function UpdateCompany() {
   return (
     <>
       <AdminHome />
-      <h1 style={{ marginTop: "90px", color: "navy" }}>
+      <h1 style={{ marginTop: "90px", color: "rgba(85,107,247,255)" }}>
         Update Companies Data
       </h1>
       <div className="container-fluid h-100">

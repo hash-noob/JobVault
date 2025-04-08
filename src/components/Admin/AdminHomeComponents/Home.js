@@ -13,7 +13,7 @@ const Home = () => {
           <img src={BannerBackground} alt="" />
         </div>
         <div className="home-text-section">
-          <h1 className="primary-heading" style={{color:"navy",fontSize:"50px", fontWeight:"700px",marginLeft:"150px"}} >
+          <h1 className="primary-heading" style={{color:"rgba(85,107,247,255)",fontSize:"50px", fontWeight:"700px",marginLeft:"150px"}} >
             Welcome Admin
           </h1>
           <p className="primary-text" style={{marginLeft:"150px"}}>

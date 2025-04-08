@@ -1,141 +1,177 @@
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: #ffffff;
-    padding: 20px;
+/* Enhanced FAQ Styling */
+.main {
+  max-width: 1200px;
+  margin: 150px auto 50px;
+  padding: 0 20px;
+  font-family: 'Reem Kufi', sans-serif;
 }
 
-.header-image {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 20px;
+.header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .faq-heading {
-    font-size: 3rem;
-    color: navy;
+  color: #556bf7;
+  font-size: 2.5rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 
-.main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-    margin-top: 150px;
+.faq-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #556bf7, #3a4db5);
+  border-radius: 3px;
+}
+
+/* Tabs styling */
+.tabs-container {
+  margin-bottom: 30px;
 }
 
 .bloc-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .tabs {
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
+  padding: 12px 25px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .tabs:hover {
-    background-color: #8982d5;
+  background: #e8e8e8;
+  transform: translateY(-2px);
 }
 
 .active-tabs {
-    background-color: #26268c;
-    color: #fff;
+  background: linear-gradient(135deg, #556bf7, #3a4db5);
+  color: white;
+  box-shadow: 0 4px 10px rgba(85, 107, 247, 0.3);
 }
 
+/* Content styling */
 .content-tabs {
-    animation: fadeIn 0.9s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+  min-height: 500px;
 }
 
 .content {
-    display: none;
+  display: none;
+  padding: 20px 0;
 }
 
 .active-content {
-    display: block;
+  display: block;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.content div {
-    margin-bottom: 20px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.content h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
+/* Accordion styling */
 .accordion {
-    max-width: 800px; /* Increase maximum width */
-    margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .accordion-item {
-    border-bottom: 1px solid #ccc;
-    overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 5px 15px rgba(85, 107, 247, 0.15);
+  transform: translateY(-3px);
 }
 
 .accordion-title {
-    background-color: #1a1c4b;
-    padding: 15px;
-    cursor: pointer;
-    border-top: 1px solid #ccc;
-    color: #f7f2f8;
-    position: relative;
-    transition: background-color 0.3s ease;
+  padding: 18px 25px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .accordion-title::after {
-    content: '\25B8';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
-}
-
-.accordion-content {
-    padding: 15px;
-    display: none;
-    background-color: #fffcfc;
-    color: #333;
-    transition: max-height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  content: '+';
+  font-size: 1.5rem;
+  color: #556bf7;
+  transition: transform 0.3s ease;
 }
 
 .accordion-item.active .accordion-title {
-    background-color: #a88adc;
+  background-color: #f8f9ff;
+  color: #556bf7;
 }
 
 .accordion-item.active .accordion-title::after {
-    content: '\25BE';
-    transform: translateY(-50%) rotate(180deg);
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .accordion-item.active .accordion-content {
-    display: block;
-    padding-top: 0;
-    padding-bottom: 15px;
+  padding: 20px 25px;
+  max-height: 1000px;
+}
+
+.accordion-content p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .faq-heading {
+    font-size: 2rem;
+  }
+  
+  .tabs {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .accordion-title {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .accordion-content {
+    padding: 15px 20px;
+  }
 }

@@ -33,7 +33,7 @@
 }
 
 .form-control:focus {
-    border-color: #87CEFA; /* Light navy blue effect when focused */
+    border-color: #87CEFA; /* Light rgba(85,107,247,255) blue effect when focused */
 }
 
 .btn-primary {

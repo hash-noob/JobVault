@@ -2,50 +2,22 @@ import React, { useState, useEffect } from "react";
 import "../Home-CSS/Faq.css";
 import Navbar from "../HomeComponents/Navbar.js";
 import Footer from "../HomeComponents/Footer.js";
+
 function FaqPage() {
   const [toggleState, setToggleState] = useState(1);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const toggleTab = (index) => {
     setToggleState(index);
+    setOpenIndex(null); // Reset open accordion when changing tabs
   };
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [openIndex, setOpenIndex] = useState(null);
-
+  // Toggle accordion function
   const toggleAccordion = (index) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    setOpenIndex(prevIndex => prevIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    const items = document.querySelectorAll(".accordion-item");
-
-    const handleClick = function () {
-      if (!this.classList.contains("active")) {
-        closeAllAccordions();
-        this.classList.add("active");
-      }
-    };
-
-    items.forEach((item) => {
-      item.addEventListener("click", handleClick);
-    });
-
-    // Open the first accordion item on load
-    items[0].classList.add("active");
-
-    return () => {
-      items.forEach((item) => {
-        item.removeEventListener("click", handleClick);
-      });
-    };
-  }, []);
-
-  function closeAllAccordions() {
-    const items = document.querySelectorAll(".accordion-item");
-    items.forEach((item) => {
-      item.classList.remove("active");
-    });
-  }
+  // Data arrays remain the same
   const leetCodeQuestions = [
     {
         question: "Two Sum",
@@ -228,10 +200,11 @@ function FaqPage() {
   return (
     <>
       <Navbar />
-      <div className="main" style={{ marginTop: "150px" }}>
+      <div className="main">
         <div className="header">
           <h1 className="faq-heading">Frequently Asked Questions</h1>
         </div>
+        
         <div className="tabs-container">
           <div className="bloc-tabs">
             <button
@@ -256,44 +229,19 @@ function FaqPage() {
         </div>
 
         <div className="content-tabs">
-          <div
-            className={toggleState === 3 ? "content active-content" : "content"}
-          >
+          {/* Technical Questions Tab */}
+          <div className={toggleState === 3 ? "content active-content" : "content"}>
             <div className="accordion">
               {technicalQuestions.map((q, index) => (
                 <div
-                  className="accordion-item"
+                  className={`accordion-item ${openIndex === index ? 'active' : ''}`}
                   key={index}
-                  style={{
-                    width: "100%",
-                    maxWidth: "800px", // Increase the maximum width of the accordion item
-                    transition: "width 0.3s ease",
-                    margin: "20px auto",
-                    cursor: "pointer",
-                  }}
                   onClick={() => toggleAccordion(index)}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div
-                    className="accordion-title"
-                    style={{
-                      backgroundColor:
-                        hoveredIndex === index ? "#f0f0f0" : "transparent",
-                      padding: "10px",
-                      transition: "background-color 0.8s ease",
-                      color: "#000",
-                    }}
-                  >
-                    Question {index + 1}: {q.question}
+                  <div className="accordion-title">
+                    {q.question}
                   </div>
-                  <div
-                    className="accordion-content"
-                    style={{
-                      display: openIndex === index ? "block" : "none",
-                      padding: "10px",
-                    }}
-                  >
+                  <div className="accordion-content">
                     <p>{q.answer}</p>
                   </div>
                 </div>
@@ -301,44 +249,19 @@ function FaqPage() {
             </div>
           </div>
 
-          <div
-            className={toggleState === 1 ? "content active-content" : "content"}
-          >
+          {/* LeetCode Questions Tab */}
+          <div className={toggleState === 1 ? "content active-content" : "content"}>
             <div className="accordion">
               {leetCodeQuestions.map((q, index) => (
                 <div
-                  className="accordion-item"
+                  className={`accordion-item ${openIndex === index ? 'active' : ''}`}
                   key={index}
-                  style={{
-                    width: "100%",
-                    maxWidth: "800px", // Increase the maximum width of the accordion item
-                    transition: "width 0.3s ease",
-                    margin: "20px auto",
-                    cursor: "pointer",
-                  }}
                   onClick={() => toggleAccordion(index)}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div
-                    className="accordion-title"
-                    style={{
-                      backgroundColor:
-                        hoveredIndex === index ? "#f0f0f0" : "transparent",
-                      padding: "10px",
-                      transition: "background-color 0.8s ease",
-                      color: "#000",
-                    }}
-                  >
-                    Question {index + 1}: {q.question}
+                  <div className="accordion-title">
+                    {q.question}
                   </div>
-                  <div
-                    className="accordion-content"
-                    style={{
-                      display: openIndex === index ? "block" : "none",
-                      padding: "10px",
-                    }}
-                  >
+                  <div className="accordion-content">
                     <p>{q.answer}</p>
                   </div>
                 </div>
@@ -346,52 +269,25 @@ function FaqPage() {
             </div>
           </div>
 
-          <div
-            className={toggleState === 2 ? "content active-content" : "content"}
-          >
+          {/* Behavioral Questions Tab */}
+          <div className={toggleState === 2 ? "content active-content" : "content"}>
             <div className="accordion">
               {behavioralInterviewQuestions.map((q, index) => (
                 <div
-                  className="accordion-item"
+                  className={`accordion-item ${openIndex === index ? 'active' : ''}`}
                   key={index}
-                  style={{
-                    width: "100%",
-                    maxWidth: "800px", // Increase the maximum width of the accordion item
-                    transition: "width 0.3s ease",
-                    margin: "20px auto",
-                    cursor: "pointer",
-                  }}
                   onClick={() => toggleAccordion(index)}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div
-                    className="accordion-title"
-                    style={{
-                      backgroundColor:
-                        hoveredIndex === index ? "#f0f0f0" : "transparent",
-                      padding: "10px",
-                      transition: "background-color 0.8s ease",
-                      color: "#000",
-                    }}
-                  >
-                    Question {index + 1}: {q.question}
+                  <div className="accordion-title">
+                    {q.question}
                   </div>
-                  <div
-                    className="accordion-content"
-                    style={{
-                      display: openIndex === index ? "block" : "none",
-                      padding: "10px",
-                    }}
-                  >
+                  <div className="accordion-content">
                     <p>{q.answer}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          
         </div>
       </div>
       <Footer />

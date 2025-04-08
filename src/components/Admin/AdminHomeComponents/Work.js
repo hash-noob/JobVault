@@ -24,7 +24,7 @@ const Work = () => {
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading" style={{color:"navy",fontSize:"50px"}}>Work</p>
+        <p className="primary-subheading" style={{color:"rgba(85,107,247,255)",fontSize:"50px"}}>Work</p>
         <h1 className="primary-heading"style={{fontSize:"40px"}}>How It Works</h1>
         <p className="primary-text">
         Our JobVault platform enhances the job search process by facilitating seamless matching between students and pertinent job openings. 

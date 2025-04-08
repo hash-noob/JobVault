@@ -1,0 +1,380 @@
+.company-page-container {
+  max-width: 1200px;
+  margin: 120px auto 60px;
+  padding: 0 20px;
+}
+
+.company-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.company-page-header h1 {
+  font-size: 2.8rem;
+  color: #556bf7;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.company-page-header p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.company-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.company-image-container {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.company-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.company-image:hover {
+  transform: translateY(-5px);
+}
+
+.company-details-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.company-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(85, 107, 247, 0.15);
+}
+
+.company-header {
+  padding: 25px 30px;
+  background: linear-gradient(135deg, #556bf7, #3a4db5);
+  color: white;
+  text-align: center;
+}
+
+.company-name {
+  font-size: 2.2rem !important;
+  margin: 0 !important;
+  font-weight: 700;
+  color: white !important;
+}
+
+.company-info {
+  padding: 25px 30px;
+}
+
+.info-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.info-value {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.highlight {
+  color: #556bf7;
+  font-weight: 600;
+}
+
+.eligibility-criteria {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.eligibility-criteria .info-label {
+  margin-bottom: 10px;
+}
+
+.criteria-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.criteria-label {
+  color: #666;
+}
+
+.criteria-value {
+  font-weight: 500;
+  color: #333;
+}
+
+.apply-button-container {
+  padding: 20px 30px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.apply-btn {
+  background: linear-gradient(135deg, #556bf7, #3a4db5);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(85, 107, 247, 0.3);
+  width: 100%;
+  max-width: 250px;
+}
+
+.apply-btn:hover {
+  background: linear-gradient(135deg, #3a4db5, #2a3d95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(85, 107, 247, 0.4);
+}
+
+.apply-btn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .company-content {
+    flex-direction: column;
+  }
+  
+  .company-image-container {
+    margin-bottom: 20px;
+  }
+  
+  .company-page-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+
+/* Add these styles to the end of your CompanyPage.css file */
+
+.success-message, .error-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease-out, fadeOut 0.3s ease-in forwards;
+  animation-delay: 0s, 2.7s;
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+@keyframes slideDown {
+  from { transform: translate(-50%, -20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(85, 107, 247, 0.2);
+  border-top: 5px solid #556bf7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add these styles to your existing CompanyPage.css file */
+
+/* Eligibility status styling */
+.eligibility-status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.eligibility-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.eligible {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.not-eligible {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.eligibility-message {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Disabled button styling */
+.apply-btn:disabled {
+  background: linear-gradient(135deg, #a0a0a0, #808080);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.apply-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Confirmation Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.confirmation-modal {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.confirmation-modal h3 {
+  color: #556bf7;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.confirmation-modal p {
+  color: #333;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.cancel-btn, .confirm-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.cancel-btn {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.confirm-btn {
+  background-color: #556bf7;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #3a4db5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

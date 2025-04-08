@@ -7,7 +7,7 @@ const Contact = () => {
       <h1 className="primary-heading">Let Us Help You</h1>
       <div className="contact-form-container">
         <input type="text" placeholder="yourmail@gmail.com" />
-        <button className="secondary-button" style={{background:"navy"}}>Submit</button>
+        <button className="secondary-button" style={{background:"rgba(85,107,247,255)"}}>Submit</button>
       </div>
     </div>
   );

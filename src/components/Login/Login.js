@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios, { Axios } from "axios";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Login-CSS/login.css";
 
 function Login() {

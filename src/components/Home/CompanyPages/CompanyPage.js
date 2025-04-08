@@ -5,22 +5,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCompanies } from "../../../redux/companySlice.jsx";
 import Footer from "../HomeComponents/Footer.js";
 import Navbar from "../HomeComponents/Navbar.js";
-import ApplyJobs from "../Assets/applyjobs.png"
+import ApplyJobs from "../Assets/applyjobs.png";
+import "../Home-CSS/CompanyPage.css";
+
 function CompanyPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const companies = useSelector((state) => state.companies.companies);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies/${id}`
         );
         dispatch(getCompanies(response.data));
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
     fetchData();
@@ -48,7 +55,17 @@ function CompanyPage() {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/auth/applyCompany/${userId}/${id}`
       );
-      alert(response.data.message);
+      
+      // Show success message
+      const successMessage = document.createElement('div');
+      successMessage.className = 'success-message';
+      successMessage.textContent = response.data.message;
+      document.body.appendChild(successMessage);
+      
+      // Remove message after 3 seconds
+      setTimeout(() => {
+        document.body.removeChild(successMessage);
+      }, 3000);
 
       const updatedResponse = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/auth/getCompanies/${id}`
@@ -57,116 +74,119 @@ function CompanyPage() {
       navigate("/scheduledInterview");
     } catch (error) {
       console.error(error);
-      alert("Error applying to company");
+      
+      // Show error message
+      const errorMessage = document.createElement('div');
+      errorMessage.className = 'error-message';
+      errorMessage.textContent = "Error applying to company. Please try again.";
+      document.body.appendChild(errorMessage);
+      
+      // Remove message after 3 seconds
+      setTimeout(() => {
+        document.body.removeChild(errorMessage);
+      }, 3000);
     }
   };
 
   return (
     <>
-    <Navbar/>
-    <h1 style={{alignContent:"center", marginTop:"150px",color:"navy",fontSize: "3rem"}}>Apply Jobs</h1>
-    <div
-  className="company-list-container"
-  style={{ padding: "20px", display: "flex" }}
->
-  {/* Image */}
-  <div style={{ flex: "0 0 50%", marginRight: "30px",marginTop:"45px"}}>
-    <img
-      src={ApplyJobs} // Add image source here
-      alt="Apply Job Image" // Add alt text for accessibility
-      style={{
-        width: "500px", // Set the width of the image to fill the container
-        height: "500px", // Maintain aspect ratio
-        borderRadius: "10px",
-        marginLeft:"150px",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-        transition: "transform 0.3s ease", // Add transition for smooth animation
-      }}
-      
-    />
-  </div>
-
-  {/* Card View */}
-  <div style={{ flex: "0 0 40%", display: "flex", flexDirection: "column",marginTop:"10px" }}>
-    {companies.map((company) => (
-      <div
-        key={company.id}
-        className="company-card"
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-          padding: "20px",
-          marginBottom: "30px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-          overflow: "hidden", // Hide overflowing content
-        }}
-      >
-        <h1
-          className="company-name"
-          style={{
-            fontSize: "3rem",
-            marginBottom: "20px",
-            textAlign: "center",
-            color:"#007bff",
-
-          }}
-        >
-          {company.companyname}
-        </h1>
-        <div className="company-info" style={{ marginBottom: "20px" }}>
-          <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>CTC:</strong> {company.ctc} LPA
-          </p>
-          <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>Interview Date:</strong> {company.doi}
-          </p>
-          <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>Job Description:</strong> {company.jobdescription}
-          </p>
-          <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>Eligibility Criteria</strong> <br></br>
-            <strong>10th Percentage:</strong> {company.tenthPercentage}<br></br>
-            <strong>12th Percentage:</strong> {company.twelfthPercentage}<br></br>
-            <strong>Graduation CGPA:</strong> {company.graduationCGPA}
-          </p>
-          <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>Job Description:</strong> 
-            {company.eligibilityCriteria
-                ? company.eligibilityCriteria.join(", ")
-                : ""}
-            <p style={{ color: "#333", fontSize: "1.5rem", marginBottom: "10px" }}>
-            <strong>6th Semester CGPA:</strong> {company.sixthSemesterCGPA}
-
-          </p>
-
-          </p>
-          
+      <Navbar />
+      <div className="company-page-container">
+        <div className="company-page-header">
+          <h1>Company Details</h1>
+          <p>Review the job opportunity and apply if you meet the eligibility criteria</p>
         </div>
-        {/* Apply Button */}
-        <button
-          onClick={() => handleApply(company._id, currentUser._id)}
-          className="apply-btn"
-          style={{
-            backgroundColor: "#001f3f", // Navy blue background color
-            color: "#fff",
-            padding: "12px 24px",
-            borderRadius: "5px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "1.5rem",
-            alignSelf: "center",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Box shadow for button
-            transition: "transform 0.3s ease", // Animation for button
-          }}
-        >
-          Apply Now
-        </button>
-      </div>
-    ))}
-  </div>
-</div>
 
-    <Footer/>
+        {loading ? (
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <p>Loading company details...</p>
+          </div>
+        ) : (
+          <div className="company-content">
+            <div className="company-image-container">
+              <img
+                src={ApplyJobs}
+                alt="Apply Job"
+                className="company-image"
+              />
+            </div>
+
+            <div className="company-details-container">
+              {companies.map((company) => (
+                <div key={company.id} className="company-card">
+                  <div className="company-header">
+                    <h1 className="company-name">{company.companyname}</h1>
+                    <p>{company.jobprofile}</p>
+                  </div>
+                  
+                  <div className="company-info">
+                    <div className="info-item">
+                      <span className="info-label">CTC Package</span>
+                      <span className="info-value highlight">{company.ctc} LPA</span>
+                    </div>
+                    
+                    <div className="info-item">
+                      <span className="info-label">Interview Date</span>
+                      <span className="info-value">{new Date(company.doi).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}</span>
+                    </div>
+                    
+                    <div className="info-item">
+                      <span className="info-label">Job Description</span>
+                      <p className="info-value">{company.jobdescription}</p>
+                    </div>
+                    
+                    <div className="info-item">
+                      <span className="info-label">Eligibility Criteria</span>
+                      <div className="eligibility-criteria">
+                        <div className="criteria-item">
+                          <span className="criteria-label">10th Percentage</span>
+                          <span className="criteria-value">{company.tenthPercentage}%</span>
+                        </div>
+                        <div className="criteria-item">
+                          <span className="criteria-label">12th Percentage</span>
+                          <span className="criteria-value">{company.twelfthPercentage}%</span>
+                        </div>
+                        <div className="criteria-item">
+                          <span className="criteria-label">Graduation CGPA</span>
+                          <span className="criteria-value">{company.graduationCGPA}</span>
+                        </div>
+                        <div className="criteria-item">
+                          <span className="criteria-label">6th Semester CGPA</span>
+                          <span className="criteria-value">{company.sixthSemesterCGPA}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {company.eligibilityCriteria && company.eligibilityCriteria.length > 0 && (
+                      <div className="info-item">
+                        <span className="info-label">Additional Requirements</span>
+                        <p className="info-value">{company.eligibilityCriteria.join(", ")}</p>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="apply-button-container">
+                    <button
+                      onClick={() => handleApply(company._id, currentUser?._id)}
+                      className="apply-btn"
+                      disabled={!currentUser}
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <Footer />
     </>
   );
 }

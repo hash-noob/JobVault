@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCompanies, deleteCompany } from "../../redux/companySlice.jsx";
 import ScheduledInterview from "./CompanyPages/ScheduledInterview.js";
-import HomePage from './HomeComponents/HomePage.js'
+import HomePage from './HomeComponents/HomePage.js';
 import About from "./HomeComponents/About.js";
 import Work from "./HomeComponents/Work.js";
 import Feedback from "./HomeComponents/Feedback.js";

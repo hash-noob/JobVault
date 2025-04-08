@@ -1,0 +1,107 @@
+.landing-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+.landing-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.landing-header h1 {
+  font-size: 3rem;
+  color: #001f3f;
+  margin-bottom: 10px;
+}
+
+.landing-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.login-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.login-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.student-card {
+  border-top: 5px solid #4285F4;
+}
+
+.admin-card {
+  border-top: 5px solid #DB4437;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.student-card .card-icon {
+  color: #4285F4;
+}
+
+.admin-card .card-icon {
+  color: #DB4437;
+}
+
+.login-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.login-card p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.login-btn {
+  background: linear-gradient(to right, #001f3f, #003366);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  width: 100%;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .login-options {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px;
+  }
+}

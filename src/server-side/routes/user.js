@@ -482,4 +482,58 @@ router.post("/updatePlacementStatus", async (req, res) => {
   }
 });
 
+// Add this endpoint if it doesn't exist already
+router.post("/updateProfile", async (req, res) => {
+  try {
+    // Get user ID from the token
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, process.env.KEY);
+    const userId = decoded._id;
+
+    // Get updated fields from request body
+    const {
+      name,
+      contactNumber,
+      dob,
+      gender,
+      address,
+      graduationCollege,
+      stream,
+      graduationCGPA,
+      graduationYear,
+      skills,
+      experience,
+      projects
+    } = req.body;
+
+    // Find and update the user
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        name,
+        contactNumber,
+        dob,
+        gender,
+        address,
+        graduationCollege,
+        stream,
+        graduationCGPA,
+        graduationYear,
+        skills,
+        experience,
+        projects
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ status: false, message: "User not found" });
+    }
+
+    return res.json({ status: true, message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return res.status(500).json({ status: false, message: `Internal Server Error: ${error.message}` });
+  }
+});
 export { router as UserRouter };

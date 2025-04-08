@@ -1,9 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Add this import at the top of your file
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Register from "./components/Registeration/Register.js";
 import AdminRegister from "./components/Registeration/AdminRegister.js";
 import AdminLogin from "./components/Login/AdminLogin.js";
+import StudentLogin from "./components/Login/StudentLogin.js";
+import LandingPage from "./components/Login/LandingPage.js";
 
-import Login from "./components/Login/Login.js";
 import Home from "./components/Home/Home.js";
 import ForgetPassword from "./components/ForgotPassword/ForgetPassword.js";
 import AddCompanies from "./components/Admin/Company-CRUD/AddCompanies.js";
@@ -19,12 +22,15 @@ import CompanyListing from "./components/Home/CompanyPages/CompanyListing.js";
 import Faqspage from "./components/Home/FAQs/FaqPage.js";
 import InterviewExperience from "./components/Home/InterviewExperiencePage/InterviewExperience.js";
 import AddExperience from "./components/Home/InterviewExperiencePage/AddExperience.js";
+import StudentProfile from './components/Home/HomeComponents/StudentProfile.js';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/student-login" element={<StudentLogin />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/companylisting" element={<CompanyListing />} />
@@ -46,9 +52,9 @@ function App() {
         <Route path="/addexperience" element={<AddExperience />} />
         <Route path="/faq" element={<Faqspage />} />
         <Route path="/admin/register" element={<AdminRegister />} />
-
+        <Route path="/profile" element={<StudentProfile />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 export default App;

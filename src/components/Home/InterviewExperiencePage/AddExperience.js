@@ -54,8 +54,11 @@ function AddExperience() {
         result: ''
       });
       
-      alert('Added your interview experience');
-      navigate('/home')
+      setAlertMessage('Successfully added your interview experience!');
+      setAlertColor('#4CAF50');
+      setTimeout(() => {
+        navigate('/home');
+      }, 2000);
     } catch (error) {
       console.error('Error:', error);      
       alert('Error submitting your interview experience');
@@ -66,7 +69,7 @@ function AddExperience() {
     <>
   <Navbar/>
   <div style={{ maxWidth: '550px', margin: 'auto', fontFamily: 'Arial, sans-serif', padding: '20px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: '#fff', height: 'fit-content',minHeight: '400px', overflowY: 'auto',marginTop:'80px' }}>
-    <h2 style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: "2.5rem", color: "navy"  }}>Add Interview Experience</h2>
+    <h2 style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: "2.5rem", color: "rgba(85,107,247,255)"  }}>Add Interview Experience</h2>
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ marginBottom: '1rem' }}>
         <label style={{ marginBottom: '0.5rem', color: '#333' }}>Username:</label>
@@ -97,8 +100,8 @@ function AddExperience() {
         <label style={{ marginBottom: '0.5rem', color: '#333' }}>Result:</label>
         <select name="result" value={formData.result} onChange={(e) => handleChange(e.target.name, e.target.value)} required style={{ padding: '0.5rem', border: '1px solid #ccc', borderRadius: '5px', width: '100%' }}>
           <option value="">Select Result</option>
-          <option value="Fail">Successful</option>
-          <option value="Successful">Fail</option>
+          <option value="Successful">Successful</option>
+          <option value="Fail">Fail</option>
           <option value="Pending">Pending</option>
         </select>
       </div>

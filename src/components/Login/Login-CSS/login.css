@@ -1,78 +1,211 @@
-/* login.css */
-
+/* Modern login styles */
 body {
-    background-color: #f0f0f0; /* Set a background color for the entire page */
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    font-family: 'Reem Kufi', sans-serif;
 }
 
-.container1 {
-    max-width: 750px; /* Reduce the width of the login form */
-    margin: 50px auto;
-    background: #fff; /* Add a background color behind the login form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.modern-login-container {
+    display: flex;
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
+.login-form-container {
+    flex: 1;
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-h1 {
+.login-header {
+    margin-bottom: 30px;
     text-align: center;
-    color: #333;
+}
+
+.login-header h1 {
+    font-size: 2.5rem;
+    color: #001f3f;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.modern-form {
     margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-label {
-    font-weight: bold;
-    color: #555;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
 }
 
 .form-control {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-input[type="submit"],
-button.register-btn {
-    width: calc(100% - 22px);
-    margin-bottom: 10px; /* Add margin to create space between buttons */
-    padding: 10px;
-    background: linear-gradient(to right, #001f3f, #003366); /* Change button color to navy blue */
-    color: #fff;
+.form-control:focus {
+    border-color: #001f3f;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 31, 63, 0.2);
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #001f3f, #003366);
+    color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: opacity 0.3s;
+    margin-top: 10px;
 }
 
-input[type="submit"]:hover,
-button.register-btn:hover {
-    background: linear-gradient(to right, #003366, #001f3f);
+.login-button:hover {
+    opacity: 0.9;
 }
 
-.link {
-    text-align: center;
+.login-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     margin-top: 20px;
-    display: block;
-    color: #007bff;
-    text-decoration: none;
 }
 
-.link:hover {
-    text-decoration: underline;
+.text-button {
+    background: none;
+    border: none;
+    color: #001f3f;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.text-button:hover {
     color: #0056b3;
+    text-decoration: underline;
+}
+
+.login-image {
+    flex: 1;
+    background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.admin-image {
+    background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 31, 63, 0.7);
+}
+
+.image-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+.image-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.image-content p {
+    font-size: 1.1rem;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .error-message {
-    color: #d9534f; /* Bootstrap danger color for a more noticeable error message */
-    background-color: #f2dede; /* Background color for error message */
-    padding: 10px;
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 12px;
     border-radius: 5px;
-    width: 677px;
-    margin-bottom: 15px;
-    border: 1px solid #ebccd1;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+}
+
+/* Admin theme variations */
+.admin-theme .login-header h1 {
+    color: #DB4437;
+}
+
+.admin-theme .login-button {
+    background: linear-gradient(to right, #C62828, #DB4437);
+}
+
+.admin-theme .text-button {
+    color: #DB4437;
+}
+
+.admin-theme .text-button:hover {
+    color: #B71C1C;
+}
+
+.admin-theme .form-control:focus {
+    border-color: #DB4437;
+    box-shadow: 0 0 0 2px rgba(219, 68, 55, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modern-login-container {
+        flex-direction: column;
+    }
+    
+    .login-image {
+        display: none;
+    }
+    
+    .login-form-container {
+        padding: 30px 20px;
+    }
+}
+
+/* Legacy support for old container */
+.container1 {
+    max-width: 750px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
