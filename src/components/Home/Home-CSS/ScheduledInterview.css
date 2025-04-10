@@ -1,0 +1,75 @@
+.scheduled-interview-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 160px);
+}
+
+.scheduled-interview-container h1 {
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.calendar-container {
+  margin-bottom: 3rem;
+}
+
+/* Existing Interview List Styles */
+.scheduled-interviews-list {
+  margin-top: 2rem;
+}
+
+.scheduled-interviews-list h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.interview-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.interview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.interview-card h3 {
+  color: #1a73e8;
+  margin-bottom: 1rem;
+}
+
+.interview-card p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.interview-card strong {
+  color: #333;
+}
+
+.no-interviews {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .scheduled-interview-container {
+    padding: 1rem;
+  }
+
+  .interview-card {
+    padding: 1rem;
+  }
+}

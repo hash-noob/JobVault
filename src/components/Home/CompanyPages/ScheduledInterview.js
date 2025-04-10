@@ -4,6 +4,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import Navbar from "../HomeComponents/Navbar.js";
 import Footer from "../HomeComponents/Footer.js";
+import InterviewCalendar from "../HomeComponents/InterviewCalendar.js";
 import scheduleimage from '../Assets/scheduleding.png';
 
 function ScheduledInterview() {
@@ -99,6 +100,22 @@ function ScheduledInterview() {
         >
           Scheduled Interviews
         </motion.h1>
+
+        {/* Add Calendar Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            marginBottom: '40px',
+            backgroundColor: '#fff',
+            borderRadius: '12px',
+            padding: '20px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+          }}
+        >
+          <InterviewCalendar interviews={scheduledInterviews} />
+        </motion.div>
 
         <div style={{
           display: "flex",
