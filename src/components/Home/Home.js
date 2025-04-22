@@ -12,6 +12,9 @@ import Feedback from "./HomeComponents/Feedback.js";
 import Contact from "./HomeComponents/Contact.js";
 import Footer from "./HomeComponents/Footer.js";
 import "./Home-CSS/Application.css";
+
+
+
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,6 +37,7 @@ function Home() {
       .catch((err) => {
         console.error("Error fetching current user:", err);
       });
+
   }, []);
 
   console.log(currentUser);

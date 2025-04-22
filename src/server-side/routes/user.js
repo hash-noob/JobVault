@@ -7,6 +7,7 @@ import { Interview } from "../models/Experience.js";
 import { Admin } from "../models/admin.js";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
+import { admMessaging } from "../utils/firebaseConfig..js";
 
 //---------------------------------------------USER ENDPOINTS--------------------------------------------------//
 
@@ -194,8 +195,7 @@ router.post("/resetPassword/:token", async (req, res) => {
 //API to add a company ID to appliedCompanies array for a user
 router.post("/applyCompany/:userId/:companyId", async (req, res) => {
   const { userId, companyId } = req.params;
-  console.log("User ID: ", userId);
-  console.log("Company ID:", companyId);
+  const { token } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -210,13 +210,39 @@ router.post("/applyCompany/:userId/:companyId", async (req, res) => {
     }
 
     if (user.appliedCompanies.includes(companyId)) {
-      return res
-        .status(400)
-        .json({ message: "User already applied to this company" });
+      console.log("User already applied")
+      return res.status(400).json({ message: "User already applied to this company" });
     }
 
+    // Add company to user's applied companies
     user.appliedCompanies.push(companyId);
     await user.save();
+
+    // Send notification if token is provided
+    console.log(req.body)
+    console.log(token)
+    if (token) {
+      try {
+        await admMessaging.send({
+          token: token,
+          notification: {
+            title: 'Application Successful',
+            body: 'Your job application has been submitted successfully! We will notify you about the interview schedule.',
+          },
+          data: {
+            type: 'job_application',
+            companyId: companyId,
+            userId: userId
+          }
+        });
+      } catch (notificationError) {
+        console.error('Notification error:', notificationError);
+        // Don't fail the application if notification fails
+        if (notificationError?.errorInfo?.code === 'messaging/registration-token-not-registered') {
+          console.log('Invalid FCM token - user might need to re-register');
+        }
+      }
+    }
 
     return res.json({ message: "Company applied successfully" });
   } catch (error) {

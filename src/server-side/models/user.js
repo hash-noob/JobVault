@@ -23,8 +23,7 @@ const userSchema = new mongoose.Schema({
   appliedCompanies: [
     { type: mongoose.Schema.Types.ObjectId, ref: "companies" },
   ],
-  
-  
+  fcmToken : {type : String} 
 });
 
 const UserModel = mongoose.model("User", userSchema);

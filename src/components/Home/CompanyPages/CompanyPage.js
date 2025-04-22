@@ -7,6 +7,7 @@ import Footer from "../HomeComponents/Footer.js";
 import Navbar from "../HomeComponents/Navbar.js";
 import ApplyJobs from "../Assets/applyjobs.png";
 import "../Home-CSS/CompanyPage.css";
+import { requestFcmToken } from "../../../utils/firebase.js";
 
 function CompanyPage() {
   const { id } = useParams();
@@ -51,9 +52,12 @@ function CompanyPage() {
   }, []);
 
   const handleApply = async (companyId, userId) => {
+    const token = await requestFcmToken();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/applyCompany/${userId}/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/auth/applyCompany/${userId}/${id}`, {
+          token
+        }
       );
       
       // Show success message
